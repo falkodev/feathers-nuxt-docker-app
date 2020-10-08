@@ -12,12 +12,14 @@
 4. [Commands](#4)<br>
    4.1 [Main commands](#4-1)<br>
    4.2 [Other commands](#4-2)
-5. [Tools](#5)<br>
+5. [Backend Tools](#5)<br>
    5.1 [FeathersJS](#5-1)<br>
    &nbsp;&nbsp;&nbsp;&nbsp;5.1.1 [Hooks](#5-1-1)<br>
    &nbsp;&nbsp;&nbsp;&nbsp;5.1.2 [Services](#5-1-2)<br>
    5.2 [Docker](#5-2)<br>
-   5.3 [MongoDB](#5-3)
+   5.3 [MongoDB](#5-3)<br>
+   5.4 [Swagger](#5-4)<br>
+   5.5 [Pino](#5-5)<br>
 6. [Tests](#6)<br>
 7. [Fixtures](#7)<br>
 
@@ -68,7 +70,9 @@ There is a dependency between the containers `app-backend` and `app-db`: the DB 
 
 ### 3.2 Usual process [&#x2B06;](#contents)
 
-Run simply `make` to start on development mode. You can also look at the Makefile for other possible commands. The next section explains what commands to run.
+Run simply `make` to start on development mode. The backend part is accessible on `http://localhsot:8080` (not much here apart from the routes documentation), and the frontend on `http://localhsot:3000`.
+
+You can also look at the Makefile for other possible commands. The next section explains what commands to run.
 
 <a id="4"></a>
 
@@ -99,7 +103,7 @@ Some useful commands are `make db-dump` and `make db-restore` to save the databa
 
 <a id="5"></a>
 
-## 5 Tools [&#x2B06;](#contents)
+## 5 Backend Tools [&#x2B06;](#contents)
 
 <a id="5-1"></a>
 
@@ -196,6 +200,14 @@ app
   .hooks(hooks)
 ```
 
+A "service" in Feathers is composed of:
+- a class, the file accessing the db (retrieving the collection, creating indexes) - available in `server/src/application/services/name-of-the-service/class.js`
+- a hook file (see above) - available in `server/src/application/services/name-of-the-service/hooks.js`
+- a service file, connecting the class and the hooks, exposing the public routes - available in `server/src/application/services/name-of-the-service/service.js`
+- a domain file containing the data schema and validators, and exposing the `docs` routes for Swagger - available in `server/src/domain/name-of-the-service.js`
+
+On the frontend, `feathers-vuex` is used to automatically  retrieve services and display data through `makeFindMixin` and `makeGetMixin` (see `feathers-vuex` documentation and an example in `client/pages/orga-units.vue`).
+
 <a id="5-2"></a>
 
 ### 5.2 Docker [&#x2B06;](#contents)
@@ -235,6 +247,45 @@ If other scripts during the first init step are needed in the future, they shoul
 Outside of the Docker network, the port exposed is 27018 (in order not to mess with existing MongoDB in the local machine). Therefore, you can connect to GUI tools such as MongDB Compass or Robo 3T through `mongodb://localhost:27018` and indicate in the authentication settings the `root` credentials.
 
 To log into the container, you can run `docker-compose exec app-db bash` and then `mongo -u root`. Insert the `root` password when it is asked and you have access to the mongo shell.
+
+<a id="5-4"></a>
+
+### 5.4 Swagger [&#x2B06;](#contents)
+
+The backend routes are documented and exposed through the Swagger API on `http://localhost:8080/docs`.
+
+![swagger](server/public/swagger.png)
+
+For this to work, every service has to export a `docs` object.
+Example for users:
+
+```js
+// server/src/domain/users.js
+module.exports.docs = {
+  description: 'User service to be used for accessing this application',
+  definitions: {
+    users: convert(schema),
+    users_list: {
+      type: 'array',
+      items: {
+        $ref: '#/definitions/users',
+      },
+    },
+  },
+}
+```
+
+<a id="5-5"></a>
+
+### 5.5 Pino [&#x2B06;](#contents)
+
+`Pino` is the logger used here because it is fast, reliable and easy to use.
+
+Example of usage:
+
+```js
+app.get('logger').info('Feathers application started on http://%s:%d', host, port)
+```
 
 <a id="6"></a>
 
