@@ -1,24 +1,24 @@
 version: '3.7'
 
 services:
-  wap-db:
-    container_name: wap-db
+  app-db:
+    container_name: app-db
     build: db
     ports:
       - 27018:27017
     volumes:
       - ./db/data/db:/data/db
     environment:
-      MONGO_INITDB_DATABASE: wap
+      MONGO_INITDB_DATABASE: app
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD:
-      MONGO_INITDB_USER_USERNAME: wap-admin
+      MONGO_INITDB_USER_USERNAME: app-admin
       MONGO_INITDB_USER_PASSWORD:
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
 
-  wap-backend:
-    container_name: wap-backend
+  app-backend:
+    container_name: app-backend
     build: server
     volumes:
       - ./server/src:/app/src
@@ -29,20 +29,20 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - wap-db
+      - app-db
     environment:
       NODE_ENV: ${NODE_ENV:-production}
       NODE_APP_INSTANCE: docker
       MONGO_DB:
-      WAIT_HOSTS: wap-db:27017
+      WAIT_HOSTS: app-db:27017
     healthcheck:
       test: node healthcheck
 
-  wap-frontend:
-    container_name: wap-frontend
+  app-frontend:
+    container_name: app-frontend
     build: client
     depends_on:
-      - wap-backend
+      - app-backend
     volumes:
       - ./client/api:/app/api
       - ./client/assets:/app/assets
@@ -62,13 +62,13 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV:-production}
       NODE_APP_INSTANCE: docker
-      API_URL: http://wap-backend:8080
+      API_URL: http://app-backend:8080
       HOST: 0.0.0.0
       PORT: 3000
     healthcheck:
       test: node healthcheck
-  # wap-reverse-proxy:
-  #   container_name: wap-reverse-proxy
+  # app-reverse-proxy:
+  #   container_name: app-reverse-proxy
   #   image: nginx:alpine
   #   volumes:
   #     - ./server/public:/usr/share/nginx/backend:ro
@@ -78,7 +78,7 @@ services:
   #     # - ./proxy/certs:/etc/nginx/certs:ro
   #     # - ./letsencrypt:/etc/letsencrypt:ro
   #   depends_on:
-  #     - wap-frontend
+  #     - app-frontend
   #   ports:
   #     - 80:80
   #     - 443:443
