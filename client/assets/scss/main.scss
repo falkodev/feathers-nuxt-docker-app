@@ -1,0 +1,29 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+@import '~vuetify/src/styles/styles.sass';
+@import '~assets/scss/colors.scss';
+
+$primary: #0800c3 !important;
+
+.v-application {
+  .primary {
+    background-color: $primary;
+    border-color: $primary;
+    display: block;
+
+    &--text {
+      color: $primary;
+      caret-color: $primary;
+      display: block;
+    }
+  }
+
+  .v-btn__content {
+    height: inherit;
+  }
+}
+.theme--dark.v-application {
+  color: black !important;
+}

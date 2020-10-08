@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "ignoreTestFiles": "**/examples/*.js",
+  "integrationFolder": "test/cypress",
+  "screenshotsFolder": "test/cypress/screenshots",
+  "supportFile": false,
+  "pluginsFile": false,
+  "video": false
+}

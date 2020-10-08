@@ -1,0 +1,84 @@
+version: '3.7'
+
+services:
+  wap-db:
+    container_name: wap-db
+    build: db
+    ports:
+      - 27018:27017
+    volumes:
+      - ./db/data/db:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: wap
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD:
+      MONGO_INITDB_USER_USERNAME: wap-admin
+      MONGO_INITDB_USER_PASSWORD:
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+
+  wap-backend:
+    container_name: wap-backend
+    build: server
+    volumes:
+      - ./server/src:/app/src
+      - ./server/config:/app/config
+      - ./server/locales:/app/locales
+      - ./server/public:/app/public
+      - ./server/test:/app/test
+    ports:
+      - 8080:8080
+    depends_on:
+      - wap-db
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      NODE_APP_INSTANCE: docker
+      MONGO_DB:
+      WAIT_HOSTS: wap-db:27017
+    healthcheck:
+      test: node healthcheck
+
+  wap-frontend:
+    container_name: wap-frontend
+    build: client
+    depends_on:
+      - wap-backend
+    volumes:
+      - ./client/api:/app/api
+      - ./client/assets:/app/assets
+      - ./client/components:/app/components
+      - ./client/layouts:/app/layouts
+      - ./client/locales:/app/locales
+      - ./client/middleware:/app/middleware
+      - ./client/pages:/app/pages
+      - ./client/plugins:/app/plugins
+      - ./client/static:/app/static
+      - ./client/store:/app/store
+      - ./client/test:/app/test
+      - ./client/feathers-client.js:/app/feathers-client.js
+      - ./client/nuxt.config.js:/app/nuxt.config.js
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      NODE_APP_INSTANCE: docker
+      API_URL: http://wap-backend:8080
+      HOST: 0.0.0.0
+      PORT: 3000
+    healthcheck:
+      test: node healthcheck
+  # wap-reverse-proxy:
+  #   container_name: wap-reverse-proxy
+  #   image: nginx:alpine
+  #   volumes:
+  #     - ./server/public:/usr/share/nginx/backend:ro
+  #     - ./client/assets:/usr/share/nginx/frontend:ro
+  #     - ./proxy/site.conf:/etc/nginx/nginx.conf:ro
+  #     - ./proxy/logs:/etc/nginx/logs:rw
+  #     # - ./proxy/certs:/etc/nginx/certs:ro
+  #     # - ./letsencrypt:/etc/letsencrypt:ro
+  #   depends_on:
+  #     - wap-frontend
+  #   ports:
+  #     - 80:80
+  #     - 443:443

@@ -1,0 +1,93 @@
+{
+  "name": "wap-client",
+  "version": "1.0.0",
+  "description": "Front part of the platform",
+  "author": "Anthony Tarlao",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "generate": "nuxt generate",
+    "lint": "prettier --write '**/*.js' && eslint . --config .eslintrc.js",
+    "jest": "jest",
+    "jest:watch": "jest --watchAll",
+    "test": "npm run lint && npm run jest",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@feathersjs/authentication-client": "^4.3.3",
+    "@feathersjs/feathers": "^4.3.3",
+    "@feathersjs/socketio-client": "^4.3.3",
+    "@nuxtjs/auth": "^4.5.3",
+    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/svg": "^0.1.6",
+    "body-parser": "^1.18.3",
+    "cookie-storage": "^5.0.3",
+    "cross-env": "^5.2.0",
+    "dayjs": "^1.7.8",
+    "feathers-vuex": "^2.0.0",
+    "fs-extra": "^7.0.1",
+    "nuxt": "^2.0.0",
+    "nuxt-env": "^0.1.0",
+    "nuxt-i18n": "^5.4.4",
+    "socket.io-client": "^2.3.0",
+    "vue-the-mask": "^0.11.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.9.0",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "cypress": "^3.1.3",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^5.2.2",
+    "jest": "^24.1.0",
+    "open": "^6.4.0",
+    "prettier": "^1.16.4",
+    "vue-jest": "^4.0.0-0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "jest": {
+    "verbose": true,
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "^~/(.*)$": "<rootDir>/$1",
+      "^vue$": "vue/dist/vue.common.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest"
+    },
+    "transformIgnorePatterns": [],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/components/**/*.vue",
+      "<rootDir>/pages/**/*.vue"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "components",
+      "pages"
+    ]
+  }
+}

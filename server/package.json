@@ -1,0 +1,94 @@
+{
+  "name": "wap-server",
+  "version": "1.0.0",
+  "description": "Back part of the platform",
+  "main": "app.js",
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "scripts": {
+    "debug": "node --inspect-brk app.js",
+    "dev": "node-dev -r dotenv/config src dotenv_config_path=../.env",
+    "fixtures": "node src/infrastructure/fixtures",
+    "fixtures:users": "node -e 'require(\"./src/infrastructure/fixtures/users\").main()'",
+    "lint": "prettier --write '**/*.js' && eslint src/. test/. --config .eslintrc.json",
+    "jest": "jest",
+    "jest:watch": "jest --watchAll",
+    "service": "feathers generate service",
+    "start": "node -r dotenv/config src dotenv_config_path=../.env",
+    "test": "npm run lint && npm run jest"
+  },
+  "author": "Anthony Tarlao @falkodev",
+  "license": "MIT",
+  "dependencies": {
+    "@casl/ability": "^3.2.0",
+    "@casl/mongoose": "^2.3.2",
+    "@feathers-plus/test-utils": "^0.3.6",
+    "@feathersjs/authentication": "^4.3.1",
+    "@feathersjs/authentication-local": "^4.3.1",
+    "@feathersjs/authentication-oauth": "^4.3.1",
+    "@feathersjs/authentication-oauth2": "^1.3.1",
+    "@feathersjs/configuration": "^4.3.1",
+    "@feathersjs/errors": "^4.3.1",
+    "@feathersjs/express": "^4.3.1",
+    "@feathersjs/feathers": "^4.3.1",
+    "@feathersjs/socketio": "^4.3.3",
+    "ajv": "^5.5.2",
+    "axios": "^0.18.0",
+    "compression": "^1.7.4",
+    "config": "^1.26.1",
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.0",
+    "express-pino-logger": "^4.0.0",
+    "express-validator": "^5.3.0",
+    "faker": "^4.1.0",
+    "feathers-hooks-common": "^4.20.7",
+    "feathers-memory": "^4.1.0",
+    "feathers-mongodb": "^5.0.0",
+    "feathers-swagger": "^1.1.0",
+    "fs-extra": "^7.0.1",
+    "graceful-fs": "^4.2.2",
+    "helmet": "^3.21.0",
+    "joi": "^14.3.1",
+    "joi-errors-for-forms": "^0.2.6",
+    "joi-iban-extension": "^1.0.0",
+    "joi-to-json-schema": "^5.1.0",
+    "mongodb": "^3.3.2",
+    "mongodb-core": "^3.2.7",
+    "nodemailer": "^5.1.1",
+    "passport-google-oauth20": "^1.0.0",
+    "pino": "^5.7.0",
+    "serve-favicon": "^2.5.0",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "@feathersjs/cli": "^4.2.1",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0",
+    "node-dev": "^4.0.0",
+    "opn-cli": "^5.0.0",
+    "pino-pretty": "^2.5.0",
+    "prettier": "^1.16.4"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "config"
+    ],
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "globalSetup": "<rootDir>/test/config/setup.js",
+    "globalTeardown": "<rootDir>/test/config/teardown.js",
+    "collectCoverage": true
+  }
+}
