@@ -15,7 +15,7 @@
     <v-app-bar absolute color="white" elevate-on-scroll :clipped-left="clipped" tile app>
       <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer" />
 
-      <v-toolbar-title class="primary--text">WAP</v-toolbar-title>
+      <v-toolbar-title class="primary--text">App</v-toolbar-title>
     </v-app-bar>
     <v-content class="white">
       <v-container>
@@ -36,7 +36,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app color="white primary--text">
-      <span>&copy; 2019</span>
+      <span>&copy; 2020</span>
     </v-footer>
   </v-app>
 </template>
@@ -96,7 +96,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'WAP',
+      title: 'App',
     }
   },
 }

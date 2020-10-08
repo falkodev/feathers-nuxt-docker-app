@@ -1,4 +1,4 @@
-# wap-client
+# app-client
 
 > Front part of the platform
 

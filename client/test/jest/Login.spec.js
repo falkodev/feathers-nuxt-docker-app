@@ -35,7 +35,7 @@ describe('Login', () => {
   })
 
   test('login fail', () => {
-    wrapper.find('input[type=email]').setValue('test@wap.com')
+    wrapper.find('input[type=email]').setValue('test@app.com')
     wrapper.find('input[type=password]').setValue('xyz')
     wrapper.find('form').trigger('submit.prevent')
 
@@ -45,7 +45,7 @@ describe('Login', () => {
   test('login success', async () => {
     const stubMethod = jest.fn()
     wrapper.setMethods({ login: stubMethod })
-    wrapper.find('input[type=email]').setValue('test@wap.com')
+    wrapper.find('input[type=email]').setValue('test@app.com')
     wrapper.find('input[type=password]').setValue('test')
     wrapper.find('form').trigger('submit.prevent')
 

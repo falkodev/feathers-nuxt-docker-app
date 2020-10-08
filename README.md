@@ -1,4 +1,4 @@
-# Feathers Nuxt Docke App
+# Feathers Nuxt Docker App
 
 <a id="contents"></a>
 

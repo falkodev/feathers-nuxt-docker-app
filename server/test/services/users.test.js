@@ -38,7 +38,7 @@ describe('users service', () => {
 
   it('creates a user', async () => {
     const user = await app.service('users').create({
-      email: 'test@wap.com',
+      email: 'test@app.com',
       password: 'test',
       firstName: 'firstName',
       lastName: 'lastName',
@@ -51,7 +51,7 @@ describe('users service', () => {
   it('does not create a user with missing required field', async () => {
     try {
       await app.service('users').create({
-        email: 'test@wap.com',
+        email: 'test@app.com',
         password: 'test',
         firstName: 'firstName',
         lastName: 'lastName',

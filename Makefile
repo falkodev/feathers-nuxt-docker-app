@@ -19,13 +19,13 @@ prod:
 	NODE_ENV=production docker-compose up -d --build && make logs
 
 logs-db:
-	docker logs wap-db -f
+	docker logs app-db -f
 
 logs-back:
-	docker logs wap-backend -f
+	docker logs app-backend -f
 
 logs-front:
-	docker logs wap-frontend -f
+	docker logs app-frontend -f
 
 logs:
 	make logs-db & make logs-back & make logs-front
@@ -37,10 +37,10 @@ db-restore:
 	db/scripts/restore.sh
 
 test-frontend:
-	docker run -it wap-2_wap-frontend npm run jest
+	docker run -it feathers-nuxt-docker-app-2_app-frontend npm run jest
 
 test-backend:
-	docker run -it wap-2_wap-backend npm run jest
+	docker run -it feathers-nuxt-docker-app-2_app-backend npm run jest
 
 test:
-	make kill && NODE_ENV=test docker-compose up -d && docker-compose exec wap-frontend npm run jest && docker-compose exec wap-backend npm run jest && make kill
+	make kill && NODE_ENV=test docker-compose up -d && docker-compose exec app-frontend npm run jest && docker-compose exec app-backend npm run jest && make kill

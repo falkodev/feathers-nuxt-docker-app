@@ -1,5 +1,5 @@
 {
-  "name": "wap-server",
+  "name": "app-server",
   "version": "1.0.0",
   "description": "Back part of the platform",
   "main": "app.js",

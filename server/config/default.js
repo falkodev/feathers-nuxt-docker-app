@@ -36,7 +36,7 @@ module.exports = {
       },
     },
   },
-  mongodb: 'mongodb://localhost:27017/wap',
+  mongodb: 'mongodb://localhost:27017/app',
   nodemailer: {
     address: {
       admin: 'anthony@wearepeers.com',
@@ -51,11 +51,11 @@ module.exports = {
       },
     },
     options: {
-      from: '"WAP" <anthony@wearepeers.com>',
+      from: '"app" <anthony@wearepeers.com>',
     },
   },
   docs: {
-    title: 'WAP API',
+    title: 'app API',
     description: 'REST API from feathers',
   },
 }

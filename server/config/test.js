@@ -1,5 +1,5 @@
 module.exports = {
-  mongodb: 'mongodb://localhost:27017/wap-test',
+  mongodb: 'mongodb://localhost:27017/app-test',
   testMode: true,
   port: 8081,
 }

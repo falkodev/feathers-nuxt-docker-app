@@ -2,8 +2,8 @@
 set -e;
 
 USER_ROLE="readWrite"
-USER_NAME="${MONGO_INITDB_USER_USERNAME:-wap-admin}"
-MONGO_DB="${MONGO_INITDB_DATABASE:-wap}"
+USER_NAME="${MONGO_INITDB_USER_USERNAME:-app-admin}"
+MONGO_DB="${MONGO_INITDB_DATABASE:-app}"
 
 if [ -n "$MONGO_INITDB_USER_PASSWORD" ]; then
 	"${mongo[@]}" "$MONGO_DB" <<-EOJS

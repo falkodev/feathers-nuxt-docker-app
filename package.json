@@ -1,7 +1,7 @@
 {
-  "name": "wap",
+  "name": "app",
   "version": "2.0.0",
-  "description": "WAP platform",
+  "description": "App platform",
   "scripts": {
     "dev": "cd ./client && npm run dev & cd ./server && npm run dev",
     "lint": "npm run lint:client && npm run lint:server",

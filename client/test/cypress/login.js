@@ -1,5 +1,5 @@
 describe('Logging In', function() {
-  const email = 'test@wap.com'
+  const email = 'test@app.com'
   const password = 'test'
 
   context('Home', function() {

@@ -1,4 +1,4 @@
-# wap-server
+# app-server
 
 > Back part of the platform
 
@@ -14,7 +14,7 @@ Getting up and running is as easy as 1, 2, 3.
 2. Install your dependencies
 
     ```
-    cd path/to/wap-server; npm install
+    cd path/to/app-server; npm install
     ```
 
 3. Start your app
