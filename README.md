@@ -212,13 +212,9 @@ On the frontend, `feathers-vuex` is used to automatically  retrieve services and
 
 ### 5.2 Docker [&#x2B06;](#contents)
 
-Docker containers have a `healtcheck` command to ensure they are running correctly. It is an ongoing process, checking if the container replies on a regular basis.
+Docker containers have a `healthcheck` command to ensure they are running correctly. It is an ongoing process, checking if the container replies on a regular basis.
 
 You can check if a container is healthy by typing `docker-compose ps`
-
-![healthcheck-starting](server/public/healthcheck-starting.png)
-
-![healthcheck-started](server/public/healthcheck-started.png)
 
 <a id="5-3"></a>
 
