@@ -36,7 +36,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app color="white primary--text">
-      <span>&copy; 2020</span>
+      <span>&copy; {{ year }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -48,6 +48,12 @@ import Snackbar from '~/components/Snackbar.vue'
 export default {
   components: {
     Snackbar,
+  },
+
+  computed: {
+    year() {
+      return new Date().getFullYear()
+    }
   },
 
   async created() {

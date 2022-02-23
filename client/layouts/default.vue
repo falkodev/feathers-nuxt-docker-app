@@ -54,7 +54,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed" app color="white primary--text">
-      <span>&copy; 2020</span>
+      <span>&copy; {{ year }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -71,6 +71,9 @@ export default {
     logged() {
       return this.$store.state.auth && this.$store.state.auth.payload
     },
+    year() {
+      return new Date().getFullYear()
+    }
   },
 
   data() {

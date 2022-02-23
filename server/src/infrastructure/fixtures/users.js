@@ -14,7 +14,7 @@ async function main() {
         email: faker.internet.email(),
         lastName: faker.name.lastName(),
         firstName: faker.name.firstName(),
-        password: faker.internet.password(8),
+        password: 'test123',
         roles: [ROLES[i]],
       }
       await service.create(user)
