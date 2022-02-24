@@ -1,6 +1,6 @@
 const { authenticate } = require('@feathersjs/authentication').hooks
 const schema = require('../../../domain/programs')
-const { validate } = require('../../common/validate.hooks')
+const { validate } = require('../../../domain/common/validate.hooks')
 
 module.exports = {
   before: {

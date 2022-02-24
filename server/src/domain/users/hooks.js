@@ -1,7 +1,7 @@
 const { authenticate } = require('@feathersjs/authentication').hooks
 const { hashPassword, protect } = require('@feathersjs/authentication-local').hooks
-const schema = require('../../../domain/users')
-const { validate } = require('../../common/validate.hooks')
+const schema = require('../users')
+const { validate } = require('../common/validate.hooks')
 
 module.exports = {
   before: {

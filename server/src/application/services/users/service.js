@@ -1,5 +1,5 @@
-const { Instance } = require('./class')
-const hooks = require('./hooks')
+const { Instance } = require('@db/users')
+const hooks = require('@domain/users/hooks')
 
 module.exports = function(app) {
   app

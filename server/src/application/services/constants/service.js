@@ -1,4 +1,4 @@
-const hooks = require('./hooks')
+const hooks = require('../../../domain/constants/hooks')
 const { ROLES } = require('../../../domain/constants')
 
 module.exports = function(app) {

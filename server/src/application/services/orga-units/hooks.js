@@ -1,7 +1,7 @@
 const { authenticate } = require('@feathersjs/authentication').hooks
 const { fastJoin } = require('feathers-hooks-common')
 const schema = require('../../../domain/orga-units')
-const { validate, validateKeys, getValuesFromForeignKeys } = require('../../common/validate.hooks')
+const { validate, validateKeys, getValuesFromForeignKeys } = require('../../../domain/common/validate.hooks')
 
 // enrich returned items with values from foreign keys
 const resolvers = {

@@ -3,8 +3,6 @@ const pkg = require('./package')
 const open = require('open')
 
 export default {
-  mode: 'universal',
-
   env: {
     baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : process.env.API_URL,
   },

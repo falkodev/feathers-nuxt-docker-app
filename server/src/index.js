@@ -1,3 +1,4 @@
+require('module-alias/register')
 const app = require('./application/server')
 const port = app.get('port')
 const host = app.get('host')

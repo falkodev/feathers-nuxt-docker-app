@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@domain": ["src/domain"],
+      "@db": ["src/infrastructure/persistance"],
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "name": "app-server",
   "version": "1.0.0",
   "description": "Back part of the platform",
-  "main": "app.js",
+  "main": "src/index.js",
   "directories": {
     "lib": "src",
     "test": "test/",
@@ -55,9 +55,10 @@
     "joi-errors-for-forms": "^0.2.6",
     "joi-iban-extension": "^1.0.0",
     "joi-to-json-schema": "^5.1.0",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.3.2",
     "mongodb-core": "^3.2.7",
-    "mongoose": "^6.2.3",
+    "mongoose": "^5.0.0",
     "nodemailer": "^5.1.1",
     "passport-google-oauth20": "^1.0.0",
     "pino": "^5.7.0",
@@ -91,5 +92,9 @@
     "globalSetup": "<rootDir>/test/config/setup.js",
     "globalTeardown": "<rootDir>/test/config/teardown.js",
     "collectCoverage": true
+  },
+  "_moduleAliases": {
+    "@domain": "src/domain",
+    "@db": "src/infrastructure/persistance"
   }
 }

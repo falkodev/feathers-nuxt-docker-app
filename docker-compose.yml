@@ -26,6 +26,7 @@ services:
       - ./server/locales:/app/locales
       - ./server/public:/app/public
       - ./server/test:/app/test
+      - ./server/package.json:/app/package.json
     ports:
       - 8080:8080
     depends_on:
