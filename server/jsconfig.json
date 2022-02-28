@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
-      "@domain": ["src/domain"],
-      "@db": ["src/infrastructure/persistance"],
+      "@domain/*": ["src/domain/*"],
+      "@db/*": ["src/infrastructure/persistance/*"],
     }
-  }
+  },
+  "exclude": [
+    ".git",
+    ".app-cache",
+    ".npm",
+    ".npm-tmp",
+    "dist",
+    "dist*",
+    "node_modules",
+    "**/dist/*",
+    "**/node_modules/*"
+  ]
 }
